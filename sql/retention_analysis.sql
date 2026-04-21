@@ -76,3 +76,88 @@ churned AS (
 SELECT 
     ROUND(AVG(is_churned) * 100, 2) AS churn_rate_percent
 FROM churned;
+
+-- ========================================
+-- Query 3: Customer Lifespan Calculation
+-- ========================================
+-- Purpose:
+-- Measure the duration of each customer's engagement by calculating the time between their first and last purchase.
+--
+-- Business Context:
+-- Customer lifespan helps quantify how long customers remain active.
+-- A lifespan of 0 days indicates one-time buyers, while longer lifespans indicate repeat engagement and higher retention.
+--
+-- Output:
+-- - first_purchase: Customer’s first transaction date
+-- - last_purchase: Customer’s most recent transaction date
+-- - lifespan_days: Total active duration in days
+
+SELECT
+    CustomerID,
+    MIN(date(InvoiceDate)) AS first_purchase,
+    MAX(date(InvoiceDate)) AS last_purchase,
+    CAST(julianday(MAX(date(InvoiceDate))) - julianday(MIN(date(InvoiceDate))) AS INTEGER) AS lifespan_days
+FROM ecommerce_cleaned
+GROUP BY CustomerID
+LIMIT 20;
+
+-- ========================================
+-- Query 4: Average Customer Lifespan
+-- ========================================
+-- Purpose:
+-- Calculate the average duration customers remain active across the dataset.
+--
+-- Business Context:
+-- Average customer lifespan provides a high-level view of retention.
+-- It is a key input for Customer Lifetime Value (CLV) calculations and helps evaluate overall customer engagement.
+--
+-- Output:
+-- - avg_customer_lifespan: Average number of days customers remain active
+
+SELECT
+    ROUND(AVG(lifespan_days), 2) AS avg_customer_lifespan
+FROM (
+    SELECT
+        CustomerID,
+        CAST(julianday(MAX(date(InvoiceDate))) - julianday(MIN(date(InvoiceDate))) AS INTEGER) AS lifespan_days
+    FROM ecommerce_cleaned
+    GROUP BY CustomerID
+);
+
+-- ========================================
+-- Query 5: Monthly Cohort Activity (Customer Retention Base Table)
+-- ========================================
+-- Purpose:
+-- Group customers into cohorts based on their first purchase month and track their activity in subsequent months.
+--
+-- Business Context:
+-- Cohort analysis allows us to measure customer retention over time by observing how many customers from each cohort return in future periods.
+-- This helps identify retention trends and drop-off patterns across different customer groups.
+--
+-- Output:
+-- - cohort_month: Month of customer's first purchase
+-- - txn_month: Month of activity
+-- - active_customers: Number of customers active in that month
+
+WITH cohort AS (
+    SELECT
+        CustomerID,
+        strftime('%Y-%m', MIN(InvoiceDate)) AS cohort_month
+    FROM ecommerce_cleaned
+    GROUP BY CustomerID
+),
+transactions AS (
+    SELECT
+        CustomerID,
+        strftime('%Y-%m', InvoiceDate) AS txn_month
+    FROM ecommerce_cleaned  
+)
+SELECT
+    c.cohort_month,
+    t.txn_month,
+    COUNT(DISTINCT t.CustomerID) AS active_customers
+FROM cohort c
+JOIN transactions t 
+    ON c.CustomerID = t.CustomerID
+GROUP BY c.cohort_month, t.txn_month
+ORDER BY c.cohort_month, t.txn_month;
