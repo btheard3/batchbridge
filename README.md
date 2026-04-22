@@ -1,37 +1,49 @@
 ## Customer Analytics & Retention Intelligence (SQL | Python | Excel)
-Overview
 
-This project analyzes transactional customer data to identify retention patterns, quantify churn, and measure customer lifetime value (CLV).
+# **Overview**
 
-The goal is to understand customer behavior and uncover revenue risks using SQL and Python.
+This project analyzes ~500,000+ transactional records across 4,300+ customers to identify retention patterns, quantify churn, and measure customer lifetime value (CLV).
 
-**Business Problem**
+Using SQL and Python, the analysis translates raw transaction data into actionable insights on customer behavior, revenue concentration, and churn risk.
 
-Businesses often lack visibility into:
+# **Business Problem**
 
-- Which customers drive the most revenue
-- Which customers are at risk of churn
-- Where long-term revenue is being lost
+The business is generating $8.9M+ in total revenue, but:
 
-Without this insight, retention strategies are reactive and inefficient.
+- ~61.6% of customers are inactive (churned) under a 30-day definition
+- A majority of customers fail to return after their first purchase
+- High-value customers are disengaging, creating significant revenue leakage risk
 
-**Objective**
+Without intervention, the business risks losing a substantial portion of future revenue due to poor retention and lack of targeted re-engagement strategie
+
+# **Objective**
 
 - Segment customers based on behavior (RFM)
 - Measure churn and retention patterns
-- Analyze customer lifetime value (CLV)
+- Quantify customer lifetime value (CLV)
 - Identify revenue risk and retention opportunities
 
-**Approach**
+# **Key Metrics**
+
+- Total Revenue: $8.9M+
+- Total Transactions: 18,500+
+- Total Customers: 4,300+
+- Average Order Value (AOV): ~$480
+- Repeat Purchase Rate: ~65.6%
+- Churn Rate (30-day definition): ~61.6%
+- Average Customer Lifespan: ~130 days
+
+# **Approach**
 
 **Data Preparation & EDA**
 - Cleaned and validated transactional data
 - Explored distributions and key variables
+- Explored distributions and purchasing behavior
 
 **Descriptive Analysis (SQL + Python)**
 - Monthly revenue and transaction trends
-- Average order value (AOV)
-- Repeat purchase behavior (~65%)
+- Average order value (AOV) and purchase frequency
+- Repeat customer rate (~65%)
 - Country-level performance
 
 **Customer Segmentation (RFM)**
@@ -51,10 +63,11 @@ Segments:
 
 **Retention Analysis**
 - Churn defined as no purchase within 30 days
-- Churn rate: ~61.57%
-- Average customer lifespan: ~130 days
+- Cohort analysis used to track retention over time
+- Built retention matrix and heatmap
 
-Cohort analysis was used to track customer retention over time.
+Key finding:
+- **Retention drops sharply after the first purchase**, indicating weak early-stage engagement
 
 **Customer Lifetime Value (CLV)**
 
@@ -64,47 +77,53 @@ CLV = Average Order Value × Purchase Frequency × Customer Lifespan
 
 CLV was analyzed across customer segments to understand long-term revenue contribution.
 
-**Key Insight**
+**Key Insights**
+- 61.6% churn rate indicates a major retention problem
+- Most customers drop off shortly after their first purchase
+- At Risk customers have the highest average CLV (~$430+), exceeding VIP customers (~$220)
+- This suggests that the most valuable customers are actively disengaging
 
-Customers in the At Risk segment represent the highest average lifetime value, indicating that a significant portion of revenue is tied to customers who are no longer actively purchasing.
+# **Business Impact**
 
-This highlights a clear opportunity for targeted retention strategies.
+This analysis reveals:
 
-**Visualizations**
+- A large portion of revenue is tied to customers at risk of churn
+- The business has a high-value customer retention problem, not just a volume problem
+- Targeted retention strategies (discounts, re-engagement campaigns) could recover significant revenue
+- Customer prioritization can be optimized by focusing on high-CLV At Risk segments
+
+# **Visualizations**
 
 **Retention Heatmap**
 
 ![Retention Heatmap](reports/retention_heatmap.png)
 
 This heatmap shows customer retention by cohort over time.
-There is a sharp drop-off after the first purchase, indicating weak early retention.
+There is a sharp drop-off after the first purchase, highlighting early churn risk.
 
 **CLV by Customer Segment**
 
 ![CLV by Customer Segment](reports/clv_by_segment.png)
 
-This chart compares average customer lifetime value across segments and highlights revenue concentration in high-risk customers.
+This chart shows that At Risk customers generate the highest lifetime value, indicating revenue concentration among disengaging customers.
 
 **Excel Dashboard**
 
 ![Excel Dashboard](reports/excel_dashboard.png)
 
-This dashboard summarizes key business metrics including revenue, transactions, customer count, average order value, and repeat purchase rate.
-
-It provides a high-level view of performance trends and supports quick decision-making.
+This dashboard summarizes key KPIs including revenue, transactions, customer count, AOV, and repeat rate, providing a high-level view of business performance.
 
 **Tech Stack**
 - SQL (SQLite)
 - Python (pandas, numpy, matplotlib, seaborn)
 - Jupyter Notebooks
-- Excel (basic dashboard)
 
 **Conclusion**
 
 This project demonstrates how transactional data can be used to:
 
-- Identify churn risk
-- Measure retention
+- Identify churn and retention issues 
 - Quantify customer value
-- Inform data-driven business decisions
+- Detect revenue leakage
+- Enable data-driven customer strategy
 
