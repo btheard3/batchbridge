@@ -73,6 +73,7 @@ This highlights a clear opportunity for targeted retention strategies.
 **Visualizations**
 
 **Retention Heatmap**
+
 ![Retention Heatmap](reports/retention_heatmap.png)
 
 This heatmap shows customer retention by cohort over time.
