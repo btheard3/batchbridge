@@ -80,8 +80,7 @@ CLV was analyzed across customer segments to understand long-term revenue contri
 **Key Insights**
 - 61.6% churn rate indicates a major retention problem
 - Most customers drop off shortly after their first purchase
-- At Risk customers have the highest average CLV (~$430+),
-- exceeding VIP customers (~$220)
+- At Risk customers have the highest average CLV (~$430+), exceeding VIP customers (~$220)
 - This suggests that the most valuable customers are actively disengaging
 
 # **Business Impact**
