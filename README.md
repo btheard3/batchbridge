@@ -2,7 +2,7 @@
 
 # **Overview**
 
-This project analyzes ~500,000+ transactional records across 4,300+ customers to identify retention patterns, quantify churn, and measure customer lifetime value (CLV).
+This project analyzes ~18,500+ cleaned transactional records across 4,300+ customers to identify retention patterns, quantify churn, and measure customer lifetime value (CLV).
 
 Using SQL and Python, the analysis translates raw transaction data into actionable insights on customer behavior, revenue concentration, and churn risk.
 
