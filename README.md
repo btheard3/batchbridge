@@ -14,7 +14,7 @@ The business is generating $8.9M+ in total revenue, but:
 - A majority of customers fail to return after their first purchase
 - High-value customers are disengaging, creating significant revenue leakage risk
 
-Without intervention, the business risks losing a substantial portion of future revenue due to poor retention and lack of targeted re-engagement strategie
+Without intervention, the business risks losing a substantial portion of future revenue due to poor retention and lack of targeted re-engagement strategies
 
 # **Objective**
 
@@ -37,7 +37,7 @@ Without intervention, the business risks losing a substantial portion of future 
 
 **Data Preparation & EDA**
 - Cleaned and validated transactional data
-- Explored distributions and key variables
+- Removed duplicates, nulls, and invalid transactions
 - Explored distributions and purchasing behavior
 
 **Descriptive Analysis (SQL + Python)**
